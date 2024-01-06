@@ -6,11 +6,11 @@ metadata:
 spec:
   template:
     spec:
-      serviceAccountName: CHANGE_ME
+      serviceAccountName: auditor
       restartPolicy: Never
       containers:
       - name: audit-sh
-        image: registry.ocp4.example.com:8443/openshift4/ose-cli:v4.10
+        image: quay.io/openshift/origin-cli:4.12
         command: ["/bin/sh", "-c"]
         args:
           - "oc get pods --all-namespaces
