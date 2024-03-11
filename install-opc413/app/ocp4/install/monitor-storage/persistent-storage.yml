@@ -1,0 +1,15 @@
+prometheusK8s:
+  retention: 30d
+  volumeClaimTemplate:
+    spec:
+      storageClassName: nfs-client
+      resources:
+        requests:
+          storage: 100Gi
+alertmanagerMain:
+  volumeClaimTemplate:
+    spec:
+      storageClassName: nfs-client
+      resources:
+        requests:
+          storage: 50Gi

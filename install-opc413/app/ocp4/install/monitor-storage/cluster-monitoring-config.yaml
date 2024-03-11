@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  config.yaml: |
+    prometheusK8s:
+      retention: 30d
+      volumeClaimTemplate:
+        spec:
+          storageClassName: nfs-client
+          resources:
+            requests:
+              storage: 100Gi
+    alertmanagerMain:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: nfs-client
+          resources:
+            requests:
+              storage: 50Gi
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring
