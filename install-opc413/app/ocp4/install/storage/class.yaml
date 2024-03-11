@@ -5,4 +5,5 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: nfs-dynamic-provisioner
-reclaimPolicy: Retain
+reclaimPolicy: Delete
+allowVolumeExpansion: true
