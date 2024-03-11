@@ -1,0 +1,18 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 99-worker-chrony-conf-override
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    storage:
+      files:
+        - contents:
+            compression: gzip
+            source: data:;base64,H4sIAAAAAAAC/1ySQW/UQAyF7/MrnrQXkNAk24KQekOcgUqUHzA7cZLpTuzI4zQKvx5NspSKY8b25+f3csKvQpiXS04RhfSFtKBXmWAjYRbJnm32ogNmlWeK5t0Jj5lCIUThkjpSPEvixMPrDN6NZnN5aJp1Xf1bSlNb/WhTfu+dO+FpJHwLcUxM+CrcpwE/ZtJgopgCh4EKbEwFfcrkDoE4t771H1t/1yJdFi3mimmwZVopDaOhdZ2m3uoImpegTU6XJo4qvDV7xanFsnF0U7hSMZpxbnHvLom7OHWh65RKwfnus6+bzv8XHh7O7krbwSeLN7a/0lZclGkK3F1pw9kNxPUY+vfoWGJOxJZlcFmGOAYeCK3/VL+6pDfFMtyo1aXDmUVpdzgKm0rGnAMTWLrqkRzpIRRkiSHj+9Pj30DdCb0oQs5YRa+kx9AH0AsxUl+pG4JWmCExqjdYk40I7E5Y5mJKYXrD3MP7krOs++NxEkKM1Z/X/+dQwmR1rXdh7w85uxN+7motTfSqoi6vm+vZ6Td19ahwtBRZNJJ3B/CWNu4hOo+B3Z8AAAD//0fNBVzGAgAA
+          mode: 420
+          overwrite: true
+          path: /etc/chrony.conf

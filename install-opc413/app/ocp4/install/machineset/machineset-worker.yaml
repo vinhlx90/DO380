@@ -1,0 +1,61 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/memoryMb: "49152"
+    machine.openshift.io/vCPU: "16"
+  creationTimestamp: "2024-03-01T05:50:58Z"
+  generation: 3
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+  name: ocp-prod01-fbnvt-worker-0
+  namespace: openshift-machine-api
+  resourceVersion: "1726179"
+  uid: 241d1587-fff1-462f-bc75-4ddf2ab1cde6
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+      machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-worker-0
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-worker-0
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          diskGiB: 200
+          kind: VSphereMachineProviderSpec
+          memoryMiB: 49152
+          metadata:
+            creationTimestamp: null
+          network:
+            devices:
+            - networkName: VLAN_65
+          numCPUs: 16
+          numCoresPerSocket: 2
+          snapshot: ""
+          template: ocp-prod01-fbnvt-rhcos-generated-region-generated-zone
+          userDataSecret:
+            name: worker-user-data
+          workspace:
+            datacenter: SHB Finance DC
+            datastore: /SHB Finance DC/datastore/FC24
+            folder: /SHB Finance DC/vm/ocp-prod01-fbnvt
+            resourcePool: /SHB Finance DC/host/HA-Cluster1//Resources
+            server: vcdc.shbfinance.com.vn
+status:
+  availableReplicas: 2
+  fullyLabeledReplicas: 3
+  observedGeneration: 3
+  readyReplicas: 2
+  replicas: 3

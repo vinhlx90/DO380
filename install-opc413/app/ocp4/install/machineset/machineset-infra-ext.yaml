@@ -1,0 +1,59 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/memoryMb: "16384"
+    machine.openshift.io/vCPU: "8"
+  generation: 1
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+  name: ocp-prod01-fbnvt-infra-ext
+  namespace: openshift-machine-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+      machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-infra-ext
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+        machine.openshift.io/cluster-api-machine-role: infra-ext
+        machine.openshift.io/cluster-api-machine-type: infra-ext
+        machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-infra-ext
+    spec:
+      lifecycleHooks: {}
+      metadata:
+        labels:
+            node-role.kubernetes.io/infra-ext: ""
+            k8s.ovn.org/egress-assignable: ""
+            purpose: ext-router
+      taints:
+      - key: node-role.kubernetes.io/infra-ext
+        effect: NoSchedule
+      providerSpec:
+        value:
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          diskGiB: 200
+          kind: VSphereMachineProviderSpec
+          memoryMiB: 16384
+          metadata: {}
+          network:
+            devices:
+            - networkName: VLAN_65
+          numCPUs: 8
+          numCoresPerSocket: 2
+          snapshot: ""
+          template: ocp-prod01-fbnvt-rhcos-generated-region-generated-zone
+          userDataSecret:
+            name: worker-user-data
+          workspace:
+            datacenter: SHB Finance DC
+            datastore: /SHB Finance DC/datastore/FC24
+            folder: /SHB Finance DC/vm/ocp-prod01-fbnvt
+            resourcePool: /SHB Finance DC/host/HA-Cluster1//Resources
+            server: vcdc.shbfinance.com.vn
+status: {}

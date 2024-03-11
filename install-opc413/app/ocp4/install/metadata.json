@@ -1,0 +1,1 @@
+{"clusterName":"ocp-prod01","clusterID":"06afdf14-5fe6-49a0-87bb-22a5c39a7d51","infraID":"ocp-prod01-fbnvt","vsphere":{"vCenter":"vcdc.shbfinance.com.vn","username":"administrator@shbfinance.com.vn","password":"SHBFCvcenter123@123","terraform_platform":"vsphere"}}
