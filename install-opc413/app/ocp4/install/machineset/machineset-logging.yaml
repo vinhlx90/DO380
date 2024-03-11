@@ -6,21 +6,21 @@ metadata:
     machine.openshift.io/vCPU: "8"
   labels:
     machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
-  name: ocp-prod01-fbnvt-logging-monitoring
+  name: ocp-prod01-fbnvt-logging
   namespace: openshift-machine-api
 spec:
   replicas: 3
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
-      machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-logging-monitoring
+      machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-logging
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
-        machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-logging-monitoring
+        machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-logging
     spec:
       lifecycleHooks: {}
       metadata:
@@ -30,7 +30,6 @@ spec:
       taints:
       - key: node-role.kubernetes.io/infra
         effect: NoSchedule
-
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
