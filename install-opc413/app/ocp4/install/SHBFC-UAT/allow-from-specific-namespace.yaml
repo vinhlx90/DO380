@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-specific-namespace
+  namespace: shbfc-uat
+spec:
+  podSelector:
+    matchLabels:
+      deployment: hello
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: test-uat
+          namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: network-policy-test

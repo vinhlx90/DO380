@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test-uat
+  name: test-uat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-uat
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: test-uat
+    spec:
+      containers:
+      - image: quay.io/redhattraining/hello-world-nginx
+        name: hello-world-nginx
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}

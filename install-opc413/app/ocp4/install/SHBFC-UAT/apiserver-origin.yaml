@@ -1,0 +1,29 @@
+apiVersion: v1
+items:
+- apiVersion: config.openshift.io/v1
+  kind: APIServer
+  metadata:
+    annotations:
+      include.release.openshift.io/ibm-cloud-managed: "true"
+      include.release.openshift.io/self-managed-high-availability: "true"
+      include.release.openshift.io/single-node-developer: "true"
+      oauth-apiserver.openshift.io/secure-token-storage: "true"
+      release.openshift.io/create-only: "true"
+    creationTimestamp: "2024-03-01T05:50:15Z"
+    generation: 2
+    name: cluster
+    ownerReferences:
+    - apiVersion: config.openshift.io/v1
+      kind: ClusterVersion
+      name: version
+      uid: 2d94d463-c298-4a7b-a2b7-db00258449b4
+    resourceVersion: "3481885"
+    uid: bb0b04b2-8002-43fe-93da-ff74f2e69df9
+  spec:
+    audit:
+      profile: Default
+    encryption:
+      type: aescbc
+kind: List
+metadata:
+  resourceVersion: ""
