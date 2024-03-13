@@ -1,0 +1,56 @@
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: logging-loki
+  namespace: openshift-logging
+spec:
+  hashRing:
+    type: memberlist
+  limits:
+    global:
+      queries:
+        maxQuerySeries: 10000
+        queryTimeout: 3m
+      retention:
+        days: 3
+        streams:
+          - days: 5
+            priority: 1
+            selector: >-
+              {kubernetes_namespace_name=~"dl-prod-api-engagement-be-public-ns|dl-prod-api-los-be-ns|dl-prod-adminapi-engagement-be-ns"}
+  managementState: Managed
+  size: 1x.extra-small
+  storage:
+    schemas:
+      - effectiveDate: '2024-03-10'
+        version: v12
+    secret:
+      name: logging-loki-s3
+      type: s3
+  storageClassName: thin-csi
+  template:
+    ingester:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ''
+        purpose: logging-monitoring
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/infra
+    querier:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ''
+        purpose: logging-monitoring
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/infra
+    queryFrontend:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ''
+        purpose: logging-monitoring
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/infra
+  tenants:
+    mode: openshift-logging
+
+

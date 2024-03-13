@@ -1,0 +1,29 @@
+apiVersion: logging.openshift.io/v1
+kind: ClusterLogging
+metadata:
+  generation: 1
+  name: instance
+  namespace: openshift-logging
+spec:
+  collection:
+    nodeSelector:
+      node-role.kubernetes.io/infra: ''
+      purpose: logging-monitoring
+    tolerations:
+      - effect: NoSchedule
+        key: purpose
+        value: common
+      - effect: NoSchedule
+        key: purpose
+        value: logging-monitoring
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+    type: vector
+  logStore:
+    lokistack:
+      name: logging-loki
+    type: lokistack
+  managementState: Managed
+  visualization:
+    type: ocp-console
+
