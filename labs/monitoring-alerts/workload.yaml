@@ -52,7 +52,7 @@ items:
       template: mysql-persistent-template
     name: mysql
   spec:
-    storageClassName: ocs-external-storagecluster-cephfs
+    storageClassName: thin-csi
     accessModes:
     - ReadWriteOnce
     resources:
