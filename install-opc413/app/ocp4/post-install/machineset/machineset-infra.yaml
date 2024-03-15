@@ -31,6 +31,9 @@ spec:
       taints:
       - key: node-role.kubernetes.io/infra
         effect: NoSchedule
+      - key: purpose
+        value: internal
+        effect: NoSchedule
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
