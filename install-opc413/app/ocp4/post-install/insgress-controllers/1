@@ -1,104 +1,132 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
 apiVersion: operator.openshift.io/v1
 kind: IngressController
 metadata:
-  creationTimestamp: "2024-03-01T06:06:23Z"
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"operator.openshift.io/v1","kind":"IngressController","metadata":{"annotations":{},"name":"external","namespace":"openshift-ingress-operator"},"spec":{"domain":"shbfinance.com.vn","endpointPublishingStrategy":{"hostNetwork":{"httpPort":80,"httpsPort":443,"protocol":"PROXY","statsPort":1938},"type":"HostNetwork"},"nodePlacement":{"nodeSelector":{"matchLabels":{"node-role.kubernetes.io/infra-ext":"","purpose":"ext-router"}},"tolerations":[{"effect":"NoSchedule","key":"node-role.kubernetes.io/infra-ext"},{"effect":"NoExecute","key":"node-role.kubernetes.io/infra-ext"}]},"routeSelector":{"matchLabels":{"type":"external"}}},"status":{}}
+  creationTimestamp: "2024-03-06T09:24:48Z"
   finalizers:
   - ingresscontroller.operator.openshift.io/finalizer-ingresscontroller
-  generation: 1
-  name: default
+  generation: 3
+  name: external
   namespace: openshift-ingress-operator
-  resourceVersion: "2241271"
-  uid: c2114424-5f64-4ac5-809f-0ba08bf10b45
+  resourceVersion: "8588305"
+  uid: 142db347-d9ef-4f07-be25-7b2917ecf945
 spec:
   clientTLS:
     clientCA:
       name: ""
     clientCertificatePolicy: ""
+  domain: shbfinance.com.vn
+  endpointPublishingStrategy:
+    hostNetwork:
+      httpPort: 80
+      httpsPort: 443
+      protocol: PROXY
+      statsPort: 1938
+    type: HostNetwork
   httpCompression: {}
   httpEmptyRequestsPolicy: Respond
   httpErrorCodePages:
     name: ""
-  replicas: 2
+  nodePlacement:
+    nodeSelector:
+      matchLabels:
+        node-role.kubernetes.io/infra: ""
+        purpose: ext-router
+    tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/infra
+    - effect: NoExecute
+      key: node-role.kubernetes.io/infra
+    - effect: NoSchedule
+      key: purpose
+      value: ext-router
+  routeSelector:
+    matchLabels:
+      type: external
   tuningOptions:
     reloadInterval: 0s
   unsupportedConfigOverrides: null
 status:
   availableReplicas: 2
   conditions:
-  - lastTransitionTime: "2024-03-01T06:06:24Z"
+  - lastTransitionTime: "2024-03-06T09:24:48Z"
     reason: Valid
     status: "True"
     type: Admitted
-  - lastTransitionTime: "2024-03-01T06:30:50Z"
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
     message: The deployment has Available status condition set to True
     reason: DeploymentAvailable
     status: "True"
     type: DeploymentAvailable
-  - lastTransitionTime: "2024-03-01T06:30:50Z"
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
     message: Minimum replicas requirement is met
     reason: DeploymentMinimumReplicasMet
     status: "True"
     type: DeploymentReplicasMinAvailable
-  - lastTransitionTime: "2024-03-05T11:59:09Z"
+  - lastTransitionTime: "2024-03-13T11:15:51Z"
     message: All replicas are available
     reason: DeploymentReplicasAvailable
     status: "True"
     type: DeploymentReplicasAllAvailable
-  - lastTransitionTime: "2024-03-05T11:59:09Z"
+  - lastTransitionTime: "2024-03-13T11:15:51Z"
     message: Deployment is not actively rolling out
     reason: DeploymentNotRollingOut
     status: "False"
     type: DeploymentRollingOut
-  - lastTransitionTime: "2024-03-01T06:06:24Z"
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
     message: The configured endpoint publishing strategy does not include a managed
       load balancer
     reason: EndpointPublishingStrategyExcludesManagedLoadBalancer
     status: "False"
     type: LoadBalancerManaged
-  - lastTransitionTime: "2024-03-01T06:06:24Z"
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
     message: LoadBalancer is not progressing
     reason: LoadBalancerNotProgressing
     status: "False"
     type: LoadBalancerProgressing
-  - lastTransitionTime: "2024-03-01T06:06:24Z"
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
     message: No DNS zones are defined in the cluster dns config.
     reason: NoDNSZones
     status: "False"
     type: DNSManaged
-  - lastTransitionTime: "2024-03-01T06:30:50Z"
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
     status: "True"
     type: Available
-  - lastTransitionTime: "2024-03-05T11:59:09Z"
+  - lastTransitionTime: "2024-03-13T11:15:51Z"
     status: "False"
     type: Progressing
-  - lastTransitionTime: "2024-03-05T11:59:09Z"
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
     status: "False"
     type: Degraded
-  - lastTransitionTime: "2024-03-01T06:06:24Z"
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
     message: IngressController is upgradeable.
     reason: Upgradeable
     status: "True"
     type: Upgradeable
-  - lastTransitionTime: "2024-03-01T06:06:24Z"
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
     message: No evaluation condition is detected.
     reason: NoEvaluationCondition
     status: "False"
     type: EvaluationConditionsDetected
-  - lastTransitionTime: "2024-03-01T06:30:34Z"
-    message: Canary route checks for the default ingress controller are successful
-    reason: CanaryChecksSucceeding
-    status: "True"
-    type: CanaryChecksSucceeding
-  domain: apps.ocp-prod01.shbfinance.com.vn
+  domain: shbfinance.com.vn
   endpointPublishingStrategy:
     hostNetwork:
       httpPort: 80
       httpsPort: 443
-      protocol: TCP
-      statsPort: 1936
+      protocol: PROXY
+      statsPort: 1938
     type: HostNetwork
-  observedGeneration: 1
-  selector: ingresscontroller.operator.openshift.io/deployment-ingresscontroller=default
+  observedGeneration: 2
+  routeSelector:
+    matchLabels:
+      type: external
+  selector: ingresscontroller.operator.openshift.io/deployment-ingresscontroller=external
   tlsProfile:
     ciphers:
     - ECDHE-ECDSA-AES128-GCM-SHA256
