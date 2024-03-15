@@ -26,11 +26,14 @@ spec:
       lifecycleHooks: {}
       metadata:
         labels:
-            node-role.kubernetes.io/infra-ext: ""
+            node-role.kubernetes.io/infra: ""
             k8s.ovn.org/egress-assignable: ""
             purpose: ext-router
       taints:
-      - key: node-role.kubernetes.io/infra-ext
+      - key: node-role.kubernetes.io/infra
+        effect: NoSchedule
+      - key: purpose
+        value: ext-router
         effect: NoSchedule
       providerSpec:
         value:
