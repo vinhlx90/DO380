@@ -1,0 +1,122 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring
+immutable: false
+data:
+  config.yaml: |
+    alertmanagerMain:
+      enableUserAlertmanagerConfig: false
+      enabled: null
+      logLevel: ""
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      resources: null
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+      volumeClaimTemplate:
+        metadata:
+          name: vmware-alertmanager-claim
+        spec:
+          resources:
+            requests:
+              storage: 10Gi
+          storageClassName: thin-csi
+        status: {}
+    enableUserWorkload: true
+    grafana:
+      enabled: null
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+    http: null
+    k8sPrometheusAdapter:
+      audit: null
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+    kubeStateMetrics:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+    openshiftStateMetrics:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+    prometheusK8s:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      queryLogFile: ""
+      remoteWrite: null
+      resources: null
+      retention: 7d
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+      volumeClaimTemplate:
+        metadata:
+          name: vmware-prometheus-claim
+        spec:
+          resources:
+            requests:
+              storage: 500Gi
+          storageClassName: thin-csi
+        status: {}
+    prometheusOperator:
+      logLevel: ""
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+    telemeterClient:
+      clusterID: ""
+      enabled: true
+      nodeSelector: null
+      telemeterServerURL: ""
+      token: ""
+      tolerations: null
+    thanosQuerier:
+      enableRequestLogging: false
+      logLevel: ""
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      resources: null
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoExecute
+        key: node-role.kubernetes.io/infra
+
