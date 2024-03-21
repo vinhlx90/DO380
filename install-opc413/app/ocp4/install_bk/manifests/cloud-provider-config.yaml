@@ -1,0 +1,25 @@
+apiVersion: v1
+data:
+  config: |+
+    [Global]
+    secret-name = "vsphere-creds"
+    secret-namespace = "kube-system"
+    insecure-flag = "1"
+
+    [VirtualCenter "vcdc.shbfinance.com.vn"]
+    port = "443"
+
+    datacenters = "SHB Finance DC"
+
+    [Workspace]
+    server = "vcdc.shbfinance.com.vn"
+    datacenter = "SHB Finance DC"
+    default-datastore = "/SHB Finance DC/datastore/FC24"
+    folder = "/SHB Finance DC/vm/ocp-prod01-fbnvt"
+    resourcepool-path = "/SHB Finance DC/host/HA-Cluster1//Resources"
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cloud-provider-config
+  namespace: openshift-config

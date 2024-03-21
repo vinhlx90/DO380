@@ -1,0 +1,50 @@
+apiVersion: config.openshift.io/v1
+kind: Infrastructure
+metadata:
+  creationTimestamp: null
+  name: cluster
+spec:
+  cloudConfig:
+    key: config
+    name: cloud-provider-config
+  platformSpec:
+    type: VSphere
+    vsphere:
+      failureDomains:
+      - name: generated-failure-domain
+        region: generated-region
+        server: vcdc.shbfinance.com.vn
+        topology:
+          computeCluster: /SHB Finance DC/host/HA-Cluster1
+          datacenter: SHB Finance DC
+          datastore: /SHB Finance DC/datastore/FC24
+          networks:
+          - VLAN_65
+          resourcePool: /SHB Finance DC/host/HA-Cluster1//Resources
+        zone: generated-zone
+      nodeNetworking:
+        external: {}
+        internal: {}
+      vcenters:
+      - datacenters:
+        - SHB Finance DC
+        port: 443
+        server: vcdc.shbfinance.com.vn
+status:
+  apiServerInternalURI: https://api-int.ocp-prod01.shbfinance.com.vn:6443
+  apiServerURL: https://api.ocp-prod01.shbfinance.com.vn:6443
+  controlPlaneTopology: HighlyAvailable
+  cpuPartitioning: None
+  etcdDiscoveryDomain: ""
+  infrastructureName: ocp-prod01-fbnvt
+  infrastructureTopology: HighlyAvailable
+  platform: VSphere
+  platformStatus:
+    type: VSphere
+    vsphere:
+      apiServerInternalIP: 10.0.65.7
+      apiServerInternalIPs:
+      - 10.0.65.7
+      ingressIP: 10.0.65.8
+      ingressIPs:
+      - 10.0.65.8

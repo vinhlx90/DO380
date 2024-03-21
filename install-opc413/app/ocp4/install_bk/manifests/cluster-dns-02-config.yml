@@ -1,0 +1,11 @@
+apiVersion: config.openshift.io/v1
+kind: DNS
+metadata:
+  creationTimestamp: null
+  name: cluster
+spec:
+  baseDomain: ocp-prod01.shbfinance.com.vn
+  platform:
+    aws: null
+    type: ""
+status: {}
