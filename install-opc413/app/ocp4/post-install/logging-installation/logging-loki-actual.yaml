@@ -1,0 +1,114 @@
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"loki.grafana.com/v1","kind":"LokiStack","metadata":{"annotations":{},"name":"logging-loki","namespace":"openshift-logging"},"spec":{"hashRing":{"type":"memberlist"},"limits":{"global":{"queries":{"maxQuerySeries":10000,"queryTimeout":"3m"},"retention":{"days":3,"streams":[{"days":5,"priority":1,"selector":"{kubernetes_namespace_name=~\"dl-prod-api-engagement-be-public-ns|dl-prod-api-los-be-ns|dl-prod-adminapi-engagement-be-ns\"}"}]}}},"managementState":"Managed","size":"1x.extra-small","storage":{"schemas":[{"effectiveDate":"2024-03-10","version":"v12"}],"secret":{"name":"logging-loki-s3","type":"s3"}},"storageClassName":"thin-csi","template":{"ingester":{"nodeSelector":{"node-role.kubernetes.io/infra":"","purpose":"logging-monitoring"},"tolerations":[{"effect":"NoSchedule","key":"node-role.kubernetes.io/infra"},{"effect":"NoSchedule","key":"purpose","value":"logging"}]},"querier":{"nodeSelector":{"node-role.kubernetes.io/infra":"","purpose":"logging-monitoring"},"tolerations":[{"effect":"NoSchedule","key":"node-role.kubernetes.io/infra"},{"effect":"NoSchedule","key":"purpose","value":"logging"}]},"queryFrontend":{"nodeSelector":{"node-role.kubernetes.io/infra":"","purpose":"logging-monitoring"},"tolerations":[{"effect":"NoSchedule","key":"node-role.kubernetes.io/infra"},{"effect":"NoSchedule","key":"purpose","value":"logging"}]}},"tenants":{"mode":"openshift-logging"}}}
+    loki.grafana.com/rulesDiscoveredAt: "2024-03-21T04:39:32Z"
+  creationTimestamp: "2024-03-13T08:41:57Z"
+  generation: 2
+  name: logging-loki
+  namespace: openshift-logging
+  resourceVersion: "12735115"
+  uid: 294eb206-4b84-4d7e-9847-8e466d3b0a85
+spec:
+  hashRing:
+    type: memberlist
+  limits:
+    global:
+      queries:
+        maxQuerySeries: 10000
+        queryTimeout: 3m
+      retention:
+        days: 3
+        streams:
+        - days: 5
+          priority: 1
+          selector: '{kubernetes_namespace_name=~"dl-prod-api-engagement-be-public-ns|dl-prod-api-los-be-ns|dl-prod-adminapi-engagement-be-ns"}'
+  managementState: Managed
+  size: 1x.extra-small
+  storage:
+    schemas:
+    - effectiveDate: "2024-03-10"
+      version: v12
+    secret:
+      name: logging-loki-s3
+      type: s3
+  storageClassName: thin-csi
+  template:
+    ingester:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoSchedule
+        key: purpose
+        value: logging
+    querier:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoSchedule
+        key: purpose
+        value: logging
+    queryFrontend:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+        purpose: logging-monitoring
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoSchedule
+        key: purpose
+        value: logging
+  tenants:
+    mode: openshift-logging
+status:
+  components:
+    compactor:
+      Running:
+      - logging-loki-compactor-0
+    distributor:
+      Running:
+      - logging-loki-distributor-5f9644fdbf-2kzp2
+      - logging-loki-distributor-5f9644fdbf-q8qjm
+    gateway:
+      Running:
+      - logging-loki-gateway-668c8ccd96-q8p6l
+      - logging-loki-gateway-668c8ccd96-f8pvl
+    indexGateway:
+      Running:
+      - logging-loki-index-gateway-0
+      - logging-loki-index-gateway-1
+    ingester:
+      Running:
+      - logging-loki-ingester-1
+      - logging-loki-ingester-0
+    querier:
+      Running:
+      - logging-loki-querier-8ddcb7564-ngqjc
+      - logging-loki-querier-8ddcb7564-wsxl8
+    queryFrontend:
+      Running:
+      - logging-loki-query-frontend-7bc8789d7c-d2v5p
+      - logging-loki-query-frontend-7bc8789d7c-f6gqq
+  conditions:
+  - lastTransitionTime: "2024-03-21T04:44:55Z"
+    message: Some LokiStack components pending on dependencies
+    reason: PendingComponents
+    status: "False"
+    type: Pending
+  - lastTransitionTime: "2024-03-21T04:44:55Z"
+    message: All components ready
+    reason: ReadyComponents
+    status: "True"
+    type: Ready
+  storage:
+    schemas:
+    - effectiveDate: "2024-03-10"
+      version: v12

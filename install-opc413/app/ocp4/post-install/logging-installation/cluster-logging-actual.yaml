@@ -1,0 +1,41 @@
+apiVersion: logging.openshift.io/v1
+kind: ClusterLogging
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"logging.openshift.io/v1","kind":"ClusterLogging","metadata":{"annotations":{},"generation":1,"name":"instance","namespace":"openshift-logging"},"spec":{"collection":{"tolerations":[{"effect":"NoSchedule","key":"node-role.kubernetes.io/master"},{"effect":"NoSchedule","key":"purpose","value":"logging"},{"effect":"NoSchedule","key":"purpose","value":"internal"},{"effect":"NoSchedule","key":"node-role.kubernetes.io/infra"},{"effect":"NoSchedule","key":"purpose","value":"ext-router"}],"type":"vector"},"logStore":{"lokistack":{"name":"logging-loki"},"type":"lokistack"},"managementState":"Managed","visualization":null}}
+  creationTimestamp: "2024-03-18T07:47:17Z"
+  generation: 3
+  name: instance
+  namespace: openshift-logging
+  resourceVersion: "11373783"
+  uid: a46ecec6-4e6a-4f79-a75f-b0784fad2c07
+spec:
+  collection:
+    tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+    - effect: NoSchedule
+      key: purpose
+      value: logging
+    - effect: NoSchedule
+      key: purpose
+      value: internal
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/infra
+    - effect: NoSchedule
+      key: purpose
+      value: ext-router
+    type: vector
+  logStore:
+    lokistack:
+      name: logging-loki
+    type: lokistack
+  managementState: Managed
+status:
+  conditions:
+  - lastTransitionTime: "2024-03-19T04:10:32Z"
+    status: "True"
+    type: Ready
+  logStore: {}
+  visualization: {}
