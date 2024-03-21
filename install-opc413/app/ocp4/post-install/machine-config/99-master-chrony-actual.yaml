@@ -1,0 +1,22 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  creationTimestamp: "2024-03-13T10:22:38Z"
+  generation: 1
+  labels:
+    machineconfiguration.openshift.io/role: master
+  name: 99-master-chrony
+  resourceVersion: "7632726"
+  uid: 44bc076e-346f-4790-9ed2-eaef59fe8172
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    storage:
+      files:
+      - contents:
+          compression: ""
+          source: data:,server%2010.0.40.20%20iburst%20%0Adriftfile%20%2Fvar%2Flib%2Fchrony%2Fdrift%0Amakestep%201.0%203%0Artcsync%0Alogdir%20%2Fvar%2Flog%2Fchrony%0A
+        mode: 420
+        overwrite: true
+        path: /etc/chrony.conf
