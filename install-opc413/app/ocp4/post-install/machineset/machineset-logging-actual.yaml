@@ -1,0 +1,70 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  annotations:
+    machine.openshift.io/memoryMb: "16384"
+    machine.openshift.io/vCPU: "8"
+  creationTimestamp: "2024-03-06T10:51:56Z"
+  generation: 7
+  labels:
+    machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+  name: ocp-prod01-fbnvt-logging
+  namespace: openshift-machine-api
+  resourceVersion: "11353570"
+  uid: c0174bc2-5236-48d3-b0d2-7f92454a7947
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+      machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-logging
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: ocp-prod01-fbnvt
+        machine.openshift.io/cluster-api-machine-role: infra
+        machine.openshift.io/cluster-api-machine-type: infra
+        machine.openshift.io/cluster-api-machineset: ocp-prod01-fbnvt-logging
+    spec:
+      lifecycleHooks: {}
+      metadata:
+        labels:
+          node-role.kubernetes.io/infra: ""
+          purpose: logging-monitoring
+      providerSpec:
+        value:
+          apiVersion: machine.openshift.io/v1beta1
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          diskGiB: 200
+          kind: VSphereMachineProviderSpec
+          memoryMiB: 16384
+          metadata:
+            creationTimestamp: null
+          network:
+            devices:
+            - networkName: VLAN_65
+          numCPUs: 8
+          numCoresPerSocket: 2
+          snapshot: ""
+          template: ocp-prod01-fbnvt-rhcos-generated-region-generated-zone
+          userDataSecret:
+            name: worker-user-data
+          workspace:
+            datacenter: SHB Finance DC
+            datastore: /SHB Finance DC/datastore/FC24
+            folder: /SHB Finance DC/vm/ocp-prod01-fbnvt
+            resourcePool: /SHB Finance DC/host/HA-Cluster1//Resources
+            server: vcdc.shbfinance.com.vn
+      taints:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/infra
+      - effect: NoSchedule
+        key: purpose
+        value: logging
+status:
+  availableReplicas: 3
+  fullyLabeledReplicas: 3
+  observedGeneration: 7
+  readyReplicas: 3
+  replicas: 3
