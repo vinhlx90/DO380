@@ -1,0 +1,15 @@
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"allowVolumeExpansion":true,"apiVersion":"storage.k8s.io/v1","kind":"StorageClass","metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"true"},"name":"nfs-client"},"provisioner":"nfs-dynamic-provisioner","reclaimPolicy":"Retain"}
+    storageclass.kubernetes.io/is-default-class: "false"
+  creationTimestamp: "2024-03-08T07:41:21Z"
+  name: nfs-client
+  resourceVersion: "12705938"
+  uid: c7805701-2fb5-4012-ad5b-f7d8c99738a9
+provisioner: nfs-dynamic-provisioner
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
