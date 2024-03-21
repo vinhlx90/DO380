@@ -1,0 +1,139 @@
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"operator.openshift.io/v1","kind":"IngressController","metadata":{"annotations":{},"name":"external","namespace":"openshift-ingress-operator"},"spec":{"domain":"shbfinance.com.vn","endpointPublishingStrategy":{"hostNetwork":{"httpPort":80,"httpsPort":443,"protocol":"PROXY","statsPort":1938},"type":"HostNetwork"},"nodePlacement":{"nodeSelector":{"matchLabels":{"node-role.kubernetes.io/infra-ext":"","purpose":"ext-router"}},"tolerations":[{"effect":"NoSchedule","key":"node-role.kubernetes.io/infra-ext"},{"effect":"NoExecute","key":"node-role.kubernetes.io/infra-ext"}]},"routeSelector":{"matchLabels":{"type":"external"}}},"status":{}}
+  creationTimestamp: "2024-03-06T09:24:48Z"
+  finalizers:
+  - ingresscontroller.operator.openshift.io/finalizer-ingresscontroller
+  generation: 4
+  name: external
+  namespace: openshift-ingress-operator
+  resourceVersion: "11337285"
+  uid: 142db347-d9ef-4f07-be25-7b2917ecf945
+spec:
+  clientTLS:
+    clientCA:
+      name: ""
+    clientCertificatePolicy: ""
+  domain: shbfinance.com.vn
+  endpointPublishingStrategy:
+    hostNetwork:
+      httpPort: 80
+      httpsPort: 443
+      protocol: PROXY
+      statsPort: 1938
+    type: HostNetwork
+  httpCompression: {}
+  httpEmptyRequestsPolicy: Respond
+  httpErrorCodePages:
+    name: ""
+  nodePlacement:
+    nodeSelector:
+      matchLabels:
+        node-role.kubernetes.io/infra: ""
+        purpose: ext-router
+    tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/infra
+    - effect: NoExecute
+      key: node-role.kubernetes.io/infra
+    - effect: NoSchedule
+      key: purpose
+      value: ext-router
+  routeSelector:
+    matchLabels:
+      type: external
+  tuningOptions:
+    reloadInterval: 0s
+  unsupportedConfigOverrides: null
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2024-03-06T09:24:48Z"
+    reason: Valid
+    status: "True"
+    type: Admitted
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
+    message: The deployment has Available status condition set to True
+    reason: DeploymentAvailable
+    status: "True"
+    type: DeploymentAvailable
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
+    message: Minimum replicas requirement is met
+    reason: DeploymentMinimumReplicasMet
+    status: "True"
+    type: DeploymentReplicasMinAvailable
+  - lastTransitionTime: "2024-03-19T03:09:04Z"
+    message: All replicas are available
+    reason: DeploymentReplicasAvailable
+    status: "True"
+    type: DeploymentReplicasAllAvailable
+  - lastTransitionTime: "2024-03-19T03:09:04Z"
+    message: Deployment is not actively rolling out
+    reason: DeploymentNotRollingOut
+    status: "False"
+    type: DeploymentRollingOut
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
+    message: The configured endpoint publishing strategy does not include a managed
+      load balancer
+    reason: EndpointPublishingStrategyExcludesManagedLoadBalancer
+    status: "False"
+    type: LoadBalancerManaged
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
+    message: LoadBalancer is not progressing
+    reason: LoadBalancerNotProgressing
+    status: "False"
+    type: LoadBalancerProgressing
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
+    message: No DNS zones are defined in the cluster dns config.
+    reason: NoDNSZones
+    status: "False"
+    type: DNSManaged
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2024-03-19T03:09:04Z"
+    status: "False"
+    type: Progressing
+  - lastTransitionTime: "2024-03-06T09:25:34Z"
+    status: "False"
+    type: Degraded
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
+    message: IngressController is upgradeable.
+    reason: Upgradeable
+    status: "True"
+    type: Upgradeable
+  - lastTransitionTime: "2024-03-06T09:24:49Z"
+    message: No evaluation condition is detected.
+    reason: NoEvaluationCondition
+    status: "False"
+    type: EvaluationConditionsDetected
+  domain: shbfinance.com.vn
+  endpointPublishingStrategy:
+    hostNetwork:
+      httpPort: 80
+      httpsPort: 443
+      protocol: PROXY
+      statsPort: 1938
+    type: HostNetwork
+  observedGeneration: 4
+  routeSelector:
+    matchLabels:
+      type: external
+  selector: ingresscontroller.operator.openshift.io/deployment-ingresscontroller=external
+  tlsProfile:
+    ciphers:
+    - ECDHE-ECDSA-AES128-GCM-SHA256
+    - ECDHE-RSA-AES128-GCM-SHA256
+    - ECDHE-ECDSA-AES256-GCM-SHA384
+    - ECDHE-RSA-AES256-GCM-SHA384
+    - ECDHE-ECDSA-CHACHA20-POLY1305
+    - ECDHE-RSA-CHACHA20-POLY1305
+    - DHE-RSA-AES128-GCM-SHA256
+    - DHE-RSA-AES256-GCM-SHA384
+    - TLS_AES_128_GCM_SHA256
+    - TLS_AES_256_GCM_SHA384
+    - TLS_CHACHA20_POLY1305_SHA256
+    minTLSVersion: VersionTLS12
